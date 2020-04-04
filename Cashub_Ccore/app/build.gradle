@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+def APIName = 'Cashub_SDK'
+def verName = '_1.0.0'
+def extension = '.jar'
+
+
+android {
+    compileSdkVersion rootProject.ext.android['compileSdkVersion']
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+        applicationId "castles.cashub.ccore"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation rootProject.ext.dependencies["androidx:appcompat"]
+    implementation rootProject.ext.dependencies["androidx:constraint"]
+    testImplementation rootProject.ext.dependencies["junit:junit-core"]
+    androidTestImplementation rootProject.ext.dependencies["androidx:runner"]
+    androidTestImplementation rootProject.ext.dependencies["androidx:espresso"]
+    implementation rootProject.ext.dependencies["gson:gson-core"]
+    implementation files('libs/Cashub_SDK_1.0.0.jar')
+}
+
+task makeAllJar(type: Jar) {
+    archiveName = APIName + verName + extension
+
+
+    from(project.zipTree('jars/cashub-ccore-API-1.0.0.jar'))
+    from(project.zipTree('jars/cashub-ccore-interface-1.0.0.jar'))
+    from(project.zipTree('jars/custom-impl-1.0.1.jar'))
+
+    from(project.zipTree('jars/CTOS.CtPrint_0.0.6.jar'))
+    from(project.zipTree('jars/CtLoader_test.jar'))
+    from(project.zipTree('jars/CTOS.CtSystem_0.0.17.jar'))
+
+    destinationDir = file('build/outputs')
+}
+
+

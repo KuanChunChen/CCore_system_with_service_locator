@@ -1,0 +1,68 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: "config.gradle"
+
+def SDKName = 'Cashub_SDK'
+def APIName = 'Cashub_SDK'
+
+def verName = '_1.0.0'
+def extension = '.jar'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+}
+
+task makeAllJar(type: Jar) {
+    archiveName = SDKName + verName + extension
+
+
+    println file('ccoreapi').absolutePath
+    println "========"
+
+    sleep(20 * 1000)
+
+
+
+//    from(project.zipTree('jars/cashub-ccore-API-1.0.0.jar'))
+//    from(project.zipTree('jars/cashub-ccore-interface-1.0.0.jar'))
+//    from(project.zipTree('jars/custom-impl-1.0.1.jar'))
+//
+//    from(project.zipTree('jars/CTOS.CtPrint_0.0.6.jar'))
+//    from(project.zipTree('jars/CtLoader_test.jar'))
+//    from(project.zipTree('jars/CTOS.CtSystem_0.0.17.jar'))
+//
+//    destinationDir = file('build/outputs')
+
+}
+
+
+task makeCCoreAPI(type: Jar,dependsOn: ['buildClean']){
+
+    /** Name define */
+    baseName = APIName
+    version = verName
+    extension = extension
+
+    from('build/intermediates/javac/debug/classes')
+    from fileTree(dir: 'src/main', includes: ['assets/**'])
+    destinationDir = file('build/outputs')
+
+}
+

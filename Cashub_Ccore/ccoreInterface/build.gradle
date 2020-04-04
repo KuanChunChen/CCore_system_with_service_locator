@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+
+
+def APIName = 'cashub-ccore-interface'
+def verName = '1.0.0'
+def extension = 'jar'
+
+android {
+    compileSdkVersion rootProject.ext.android['compileSdkVersion']
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode 2
+        versionName verName
+
+    }
+
+
+    sourceSets {
+        main {
+            java {
+                srcDir 'src/main/java'
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+
+    implementation rootProject.ext.dependencies["gson:gson-core"]
+}
+
+
+
+task makeCCoreInterfaceJar(type: Jar,dependsOn: ['buildClean']){
+
+    /** Name define */
+    baseName = APIName
+    version = verName
+    extension = extension
+
+    from('build/intermediates/javac/debug/classes')
+    destinationDir = file('build/outputs')
+
+
+}
+
+task buildClean(type: Delete) {
+    delete 'build/outputs/'
+}

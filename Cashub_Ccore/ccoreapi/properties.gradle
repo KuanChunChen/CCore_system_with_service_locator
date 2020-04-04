@@ -1,0 +1,51 @@
+ext {
+    vendor = [
+            "mainVendor": "customer",
+    ]
+
+    propertiesKey = [
+            "vendor"       : "vendorName",
+            "package"      : "packageImplPath",
+            "print"        : "printImplPath",
+            "device"       : "deviceImplPath",
+            "module"       : "moduleImplPath",
+            "network"      : "networkImplPath",
+            "paymentConfig": "paymentConfigImplPath",
+            "scanner"      : "scannerImplPath",
+            "system"       : "systemImplPath"
+
+    ]
+}
+
+
+ext.initEnvirnoment = { ->
+
+    final String FILE_PREFIX_PATH = "/src/main/assets/"
+    final String FILE_EXTENSION = ".properties"
+
+    Properties properties = new Properties()
+    String vendorName = ext.vendor["mainVendor"]
+    File proFile = new File(projectDir.absolutePath + FILE_PREFIX_PATH, vendorName + FILE_EXTENSION)
+
+    println "Get Properties from :" + projectDir.absolutePath + FILE_PREFIX_PATH + vendorName + FILE_EXTENSION
+
+    properties.load(proFile.newDataInputStream())
+    gradle.ext.vendorName = ext.getPropertyByKey(properties,ext.propertiesKey["vendor"])
+    gradle.ext.packageImpl = ext.getPropertyByKey(properties,ext.propertiesKey["package"])
+    gradle.ext.printImpl = ext.getPropertyByKey(properties,ext.propertiesKey["print"])
+    gradle.ext.deviceImpl = ext.getPropertyByKey(properties,ext.propertiesKey["device"])
+    gradle.ext.moduleImpl = ext.getPropertyByKey(properties,ext.propertiesKey["module"])
+    gradle.ext.networkImpl = ext.getPropertyByKey(properties,ext.propertiesKey["network"])
+    gradle.ext.paymentConfigImpl = ext.getPropertyByKey(properties,ext.propertiesKey["paymentConfig"])
+    gradle.ext.scannerImpl = ext.getPropertyByKey(properties,ext.propertiesKey["scanner"])
+    gradle.ext.systemImpl = ext.getPropertyByKey(properties,ext.propertiesKey["system"])
+    println ext.getPropertyByKey(properties, ext.propertiesKey["system"])
+
+
+}
+
+ext.getPropertyByKey = {
+
+    Properties properties , String key->
+        return properties.getProperty(key) != null ? properties.getProperty(key) : ""
+}
