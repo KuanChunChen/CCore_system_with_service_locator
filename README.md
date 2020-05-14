@@ -49,7 +49,7 @@ All module list in this Android project :
  - Use Service Locator.
  - This module is the API can contrll the function that vendor provide.
  - When vendor provide different properties, the program will throgh reflect class to use.
- - Module strcture: website.
+ - Module strcture: https://github.com/KuanChunChen/MyGitHubImage/blob/develop/ccoreSDK/api.png
  - How the this API work:
  Use **Service Locator** to get the implement function : 
  ```java
@@ -137,14 +137,14 @@ ext.getPropertyByKey = {
 #### ccoreInterface module
  - All ccore interface in the module.
  - Contain interface, callback, model and constants.
- - Module strcture: website.
+ - Module strcture: https://github.com/KuanChunChen/MyGitHubImage/blob/develop/ccoreSDK/interface.png
  - Each interface spec:
 
-A. Device: 
-B. Network
-C. Module
-D. Package
-F. PaymentConfig
-G. Print
-H. Scanner
-I. System
+A. Device: https://github.com/KuanChunChen/MyGitHubImage/blob/develop/ccoreSDK/device.png
+B. Network: https://github.com/KuanChunChen/MyGitHubImage/blob/develop/ccoreSDK/network.png
+C. Module: https://github.com/KuanChunChen/MyGitHubImage/blob/develop/ccoreSDK/module.png
+D. Package : https://github.com/KuanChunChen/MyGitHubImage/blob/develop/ccoreSDK/package.png
+F. PaymentConfig :https://github.com/KuanChunChen/MyGitHubImage/blob/develop/ccoreSDK/paymentConfig.png
+G. Print : https://github.com/KuanChunChen/MyGitHubImage/blob/develop/ccoreSDK/print.png
+H. Scanner : https://github.com/KuanChunChen/MyGitHubImage/blob/develop/ccoreSDK/scanner.png
+I. System :https://github.com/KuanChunChen/MyGitHubImage/blob/develop/ccoreSDK/system.png
